@@ -1,39 +1,52 @@
 import React, {useState} from 'react';
-import Header from  './components/Header'
-import {Text,View,StyleSheet,FlatList} from 'react-native';
+import {Text,View,StyleSheet,FlatList,Alert} from 'react-native';
 import { v4 as uuidv4 } from 'uuid';
+import Header from  './components/Header';
 import Listitem from './components/listitems';
+import Additem from './components/Additem';
 
-  const App = () => {
-    const [items, setItems] = useState([
-      {
-        id: uuidv4(),
-        text: 'Hasham',
-      },
-      {
-        id: uuidv4(),
-        text: 'Eggs',
-      },
-      {
-        id: uuidv4(),
-        text: 'Bread',
-      },
-      {
-        id: uuidv4(),
-        text: 'Juice',
-      },
-    ]);
 
-    const deleteItem = id => {
+const App = () => {
+  const [items, setItems] = useState([
+    {
+      id: uuidv4(),
+      text: 'orange',
+    },
+    {
+      id: uuidv4(),
+      text: 'Eggs',
+    },
+    {
+      id: uuidv4(),
+      text: 'Bread',
+    },
+    {
+      id: uuidv4(),
+      text: 'Juice',
+    },
+  ]);
+
+  const deleteItem = id => {
+    setItems(prevItems => {
+      return prevItems.filter(item => item.id !== id);
+    });
+  };
+
+  const addItem = (text) => {
+    if(!text){
+      Alert.alert('Error', 'Please Enter an item', { text:'OK'});
+    }
+    else {
       setItems(prevItems => {
-        return prevItems.filter(item => item.id !== id);
+        return [{id: uuidv4(), text}, ...prevItems]
       });
-    };
-
+  }
+}; 
 
   return (
   <View style={styles.container}>
     <Header />
+    <Additem addItem={addItem} />
     < FlatList
     data={items}
     renderItem={({item}) => <Listitem item={item}
