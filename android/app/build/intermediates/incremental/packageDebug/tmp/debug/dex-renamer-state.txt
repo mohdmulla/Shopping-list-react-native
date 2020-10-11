@@ -1,0 +1,4 @@
+#Mon Oct 05 21:24:39 GST 2020
+base.0=/Users/mohammedmulla/Documents/personal-project/react-native/shopping-list/Shoppinglist/android/app/build/intermediates/dex/debug/mergeDexDebug/out/classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
